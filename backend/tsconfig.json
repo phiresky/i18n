@@ -1,0 +1,10 @@
+{
+	"extends": "../tsconfig.json",
+	"include": ["./src/**/*"],
+	"references": [{ "path": "../i18n-api" }],
+	"compilerOptions": {
+		"outDir": "dist",
+		"rootDir": "src",
+		"experimentalDecorators": true
+	}
+}

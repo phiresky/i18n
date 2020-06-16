@@ -1,0 +1,20 @@
+.i18n-widget {
+	color: black;
+	box-sizing: border-box;
+
+	@import "~@blueprintjs/core/lib/css/blueprint";
+	@import "~@blueprintjs/icons/lib/css/blueprint-icons.css";
+
+	.bp5-button.bp5-minimal.bp5-active {
+		background: rgb(74, 87, 97);
+	}
+
+	.bp5-transition-container {
+		z-index: 10000000;
+	}
+
+	.part-backgroundImage {
+		background-image: url(./logo.drawio.png);
+		background-size: contain;
+	}
+}

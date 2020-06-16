@@ -1,0 +1,32 @@
+{
+	"name": "@hediet/i18n-api",
+	"version": "0.5.0",
+	"main": "dist/index.js",
+	"types": "dist/index.d.ts",
+	"license": "MIT",
+	"scripts": {
+		"dev": "tsc --watch",
+		"build": "tsc"
+	},
+	"dependencies": {
+		"@hediet/json-rpc": "^0.2.0",
+		"@hediet/json-rpc-websocket": "^0.2.0",
+		"@hediet/semantic-json": "^0.4.2",
+		"@hediet/std": "^0.6.0",
+		"ws": "^8.8.1"
+	},
+	"publishConfig": {
+		"access": "public",
+		"registry": "https://registry.npmjs.org/"
+	},
+	"files": [
+		"dist",
+		"src"
+	],
+	"devDependencies": {
+		"typescript": "^5"
+	},
+	"optionalDependencies": {
+		"bufferutil": "^4.0.6"
+	}
+}

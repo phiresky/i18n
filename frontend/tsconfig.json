@@ -1,0 +1,13 @@
+{
+	"extends": "../tsconfig.json",
+	"include": ["src/**/*"],
+	"compilerOptions": {
+		"rootDir": "src",
+		"outDir": "dist",
+		"jsx": "react",
+		"lib": ["dom"],
+		"module": "ESNext",
+		"moduleResolution": "Bundler",
+		"experimentalDecorators": true // TODO: migrate to new decorators
+	}
+}

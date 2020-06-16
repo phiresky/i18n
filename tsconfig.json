@@ -1,0 +1,22 @@
+{
+	"extends": "../tsconfig.json",
+	"compilerOptions": {
+		"noUnusedParameters": false,
+		"noEmit": false,
+		"declaration": true,
+		"module": "nodenext"
+	},
+	"references": [
+		{ "path": "./ts-api-extras" },
+		{ "path": "./i18n-api" },
+		{ "path": "./backend" },
+		{ "path": "./frontend" },
+		{ "path": "./i18n-static-analysis" },
+		{ "path": "./frontend-lib" },
+		{ "path": "./i18n-cli" },
+		{ "path": "./eslint-plugin-i18n" },
+		{ "path": "./vscode-extension" }
+	],
+	"include": [],
+	"exclude": ["**/node_modules"]
+}

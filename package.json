@@ -1,0 +1,40 @@
+{
+	"private": true,
+	"name": "@hediet/i18n-workspace",
+	"workspaces": {
+		"packages": [
+			"./i18n-api",
+			"./frontend",
+			"./backend",
+			"./i18n-static-analysis",
+			"./i18n-cli",
+			"./eslint-plugin-i18n",
+			"./vscode-extension",
+			"./frontend-lib",
+			"./ts-api-extras"
+		]
+	},
+	"scripts": {
+		"dev": "yarn tsc --build --verbose --watch",
+		"clean": "yarn tsc --build --clean",
+		"build": "yarn tsc --build --verbose",
+		"build-api": "yarn workspace @hediet/i18n-api build",
+		"build-backend": "yarn workspace backend build",
+		"build-frontend": "yarn workspace @hediet/i18n-frontend build",
+		"build-static-analysis": "yarn workspace @hediet/i18n-static-analysis build",
+		"build-cli": "yarn workspace @hediet/i18n-cli build",
+		"build-eslint-plugin": "yarn workspace @hediet/eslint-plugin-i18n build",
+		"start-backend": "yarn workspace backend start",
+		"lint": "yarn ts-node lint-all.ts"
+	},
+	"devDependencies": {
+		"@types/eslint": "^8",
+		"prettier": "^3",
+		"typescript": "^5"
+	},
+	"dependencies": {
+		"@types/node": "^20.11.17",
+		"eslint": "^8.56.0",
+		"ts-node": "^10.9.2"
+	}
+}

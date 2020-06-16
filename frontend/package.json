@@ -1,0 +1,72 @@
+{
+	"name": "@hediet/i18n-frontend",
+	"version": "0.5.0",
+	"main": "./index",
+	"types": "./index.d.ts",
+	"scripts": {
+		"dev": "webpack-dev-server --mode development",
+		"build": "yarn build-frontend && yarn build-embedded-editor",
+		"build-frontend": "webpack --mode production",
+		"build-embedded-editor": "webpack --mode production --config webpack.config.embedded-editor.ts"
+	},
+	"license": "LGPL-3.0-only",
+	"devDependencies": {
+		"@blueprintjs/core": "^5",
+		"@blueprintjs/select": "^5",
+		"@dwqs/react-virtual-list": "^1.0.0",
+		"@hediet/i18n-static-analysis": "*",
+		"@hediet/std": "0.6.0",
+		"@types/classnames": "^2.3.1",
+		"@types/clean-webpack-plugin": "^0.1.3",
+		"@types/html-webpack-plugin": "^3.2.6",
+		"@types/js-cookie": "^3.0.2",
+		"@types/mini-css-extract-plugin": "^2.5.1",
+		"@types/node": "^20.11.17",
+		"@types/path-to-regexp": "^1.7.0",
+		"@types/react": "^18.0.17",
+		"@types/react-dom": "^18.0.6",
+		"@types/webpack": "^5.28.0",
+		"@yarnpkg/pnpify": "^4.0.0-rc.14",
+		"classnames": "^2.3.1",
+		"clean-webpack-plugin": "^4.0.0",
+		"css-loader": "^6.7.1",
+		"file-loader": "^6.2.0",
+		"fork-ts-checker-webpack-plugin": "^7.2.13",
+		"history": "^5.3.0",
+		"html-webpack-plugin": "^5.5.0",
+		"js-cookie": "^3.0.1",
+		"mini-css-extract-plugin": "^2.6.1",
+		"mobx": "^6.6.1",
+		"mobx-react": "^7.5.2",
+		"mobx-utils": "^6.0.5",
+		"path-to-regexp": "^6.2.1",
+		"pnp-webpack-plugin": "^1.7.0",
+		"react": "^18.2.0",
+		"react-dom": "^18.2.0",
+		"sass": "^1.54.4",
+		"sass-loader": "^13.0.2",
+		"style-loader": "^3.3.1",
+		"ts-loader": "^9.3.1",
+		"ts-node": "^10.9.1",
+		"typescript": "^5",
+		"webpack": "^5.74.0",
+		"webpack-cli": "^4.10.0",
+		"webpack-dev-server": "^4.10.0",
+		"zwsp-steg": "^1.0.1"
+	},
+	"publishConfig": {
+		"access": "public",
+		"registry": "https://registry.npmjs.org/"
+	},
+	"files": [
+		"dist",
+		"src",
+		"*"
+	],
+	"dependencies": {
+		"@blueprintjs/icons": "^5",
+		"@hediet/i18n-api": "workspace:^",
+		"@hediet/semantic-json": "^0.4.2",
+		"mobx-log": "^1.0.0"
+	}
+}

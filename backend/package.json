@@ -1,0 +1,49 @@
+{
+	"name": "@hediet/18n-backend",
+	"version": "1.0.0",
+	"main": "index.js",
+	"license": "GPL-3.0",
+	"type": "module",
+	"scripts": {
+		"dev": "tsc --watch",
+		"build": "tsc",
+		"typeorm": "typeorm-ts-node-commonjs",
+		"start": "node --trace-warnings ./dist/index"
+	},
+	"bin": {
+		"i18n-server": "./dist/index"
+	},
+	"dependencies": {
+		"@hediet/i18n-api": "workspace:^",
+		"@hediet/i18n-cli": "workspace:^",
+		"@hediet/i18n-frontend": "*",
+		"@hediet/i18n-static-analysis": "*",
+		"@hediet/json-rpc": "0.2.0",
+		"@hediet/json-rpc-websocket": "^0.2.0",
+		"@hediet/json-rpc-websocket-server": "^0.2.0",
+		"@hediet/json-to-dictionary": "^0.2.1",
+		"@koa/cors": "^3.3.0",
+		"bcrypt": "^5.0.1",
+		"better-sqlite3": "^8.0.1",
+		"koa": "^2.13.4",
+		"koa-history-api-fallback": "^1.0.0",
+		"koa-router": "^12.0.0",
+		"koa-static": "^5.0.0",
+		"nanoid": "^4.0.0",
+		"nodemailer": "^6.7.7",
+		"typeorm": "^0.3.7",
+		"typescript": "^5",
+		"ws": "^8.8.1"
+	},
+	"devDependencies": {
+		"@types/bcrypt": "^5.0.0",
+		"@types/koa": "^2.13.5",
+		"@types/koa-router": "^7.4.4",
+		"@types/koa-static": "^4.0.2",
+		"@types/koa__cors": "^3.3.0",
+		"@types/node": "^18.7.1",
+		"@types/nodemailer": "^6.4.5",
+		"@types/ws": "8.5.3",
+		"ts-node": "^10.9.1"
+	}
+}
