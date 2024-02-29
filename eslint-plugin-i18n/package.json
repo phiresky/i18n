@@ -11,7 +11,6 @@
 	},
 	"dependencies": {
 		"@hediet/i18n-static-analysis": "workspace:^",
-		"@types/eslint-visitor-keys": "^1.0.0",
 		"@typescript-eslint/utils": "^6.21.0",
 		"import-sync": "^2.2.0"
 	},

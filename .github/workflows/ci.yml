@@ -1,0 +1,57 @@
+name: CI
+
+on:
+    push:
+        branches: ["**"]
+
+concurrency:
+    group: ${{ github.workflow }}-${{ github.ref }}
+    cancel-in-progress: ${{ github.ref != 'refs/heads/master' }}
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+    # This workflow contains a single job called "build"
+    build:
+        # The type of runner that the job will run on
+        runs-on: self-hosted
+        timeout-minutes: 30
+        env:
+            STRICT_CI: 1
+
+        # Steps represent a sequence of tasks that will be executed as part of the job
+        steps:
+            - name: Install git # https://github.com/actions/runner/issues/3000
+              run: |
+                  sudo apt-get update
+                  sudo apt-get install -y git
+            # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+            - uses: actions/checkout@v4
+              with:
+                  fetch-depth: 10
+            - uses: actions/setup-node@v4
+              with:
+                  node-version: 20
+            - name: Corepack enable
+              run: corepack enable
+            - uses: actions/setup-node@v4
+              # https://github.com/actions/setup-node/issues/182#issuecomment-966885975
+              with:
+                  node-version: 20
+                  cache: yarn
+            - run: yarn --immutable
+
+            - name: build i18n
+              run: yarn run build
+              if: success() || failure()
+
+            - name: ESLint i18n
+              run: yarn run lint
+              env:
+                  PRETTIER_CHECK: 1
+                  NODE_OPTIONS: "--max_old_space_size=8192"
+              if: success() || failure()
+
+            - name: Knip Check
+              if: success() || failure()
+              run: |
+                  yarn run knip

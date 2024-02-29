@@ -19,7 +19,7 @@ export class SettingsPage extends React.Component<{ model: Model }> {
 			(async () => {
 				const connection = this.props.model.client.connection;
 				if (!connection || !this.props.model.client.loggedIn) {
-					return pendingPromise;
+					return await pendingPromise;
 				}
 				const result = await connection.mainApi.getOrganizations();
 				return result.orgs;
@@ -50,7 +50,7 @@ export class SettingsPage extends React.Component<{ model: Model }> {
 		const getPromise = async () => {
 			const connection = this.props.model.client.connection;
 			if (!connection || !this.props.model.client.loggedIn) {
-				return pendingPromise;
+				return await pendingPromise;
 			}
 			if (!settings.organizationId || !settings.projectId) {
 				return [];
@@ -72,7 +72,7 @@ export class SettingsPage extends React.Component<{ model: Model }> {
 		const getPromise = async () => {
 			const connection = this.props.model.client.connection;
 			if (!connection || !this.props.model.client.loggedIn) {
-				return pendingPromise;
+				return await pendingPromise;
 			}
 			if (
 				!settings.organizationId ||

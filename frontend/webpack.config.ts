@@ -8,8 +8,8 @@ const r = (file: string) => path.resolve(__dirname, file);
 
 module.exports = {
 	entry: {
-		frontend: r("src/frontend/index.tsx"),
-		["embedded-editor"]: r("src/embedded-editor/index.tsx"),
+		frontend: "./src/frontend/index.tsx",
+		["embedded-editor"]: "./src/embedded-editor/index.tsx",
 	},
 	output: {
 		path: r("dist/frontend"),
