@@ -4,6 +4,7 @@ import {
 	ManyToOne,
 	OneToMany,
 	PrimaryGeneratedColumn,
+	Relation,
 	Unique,
 } from "typeorm";
 import { OrganizationEntity } from "./OrganizationEntity.js";
@@ -31,7 +32,7 @@ export class ProjectEntity {
 	@ManyToOne((type) => OrganizationEntity, (user) => user.projects, {
 		onDelete: "CASCADE",
 	})
-	owningOrg!: OrganizationEntity;
+	owningOrg!: Relation<OrganizationEntity>;
 
 	@OneToMany((type) => VersionEntity, (version) => version.owningProject)
 	versions!: ProjectEntity[];

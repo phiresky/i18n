@@ -20,7 +20,9 @@
 		"noUnusedParameters": false,
 		"noEmit": false,
 		"declaration": true,
-		"module": "nodenext"
+		"module": "nodenext",
+		"emitDecoratorMetadata": true,
+		"experimentalDecorators": true
 	},
 	"references": [
 		{ "path": "./ts-api-extras" },

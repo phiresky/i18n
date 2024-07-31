@@ -1,5 +1,5 @@
 import * as nanoid from "nanoid";
-import { Entity, ManyToOne, PrimaryColumn } from "typeorm";
+import { Entity, ManyToOne, PrimaryColumn, Relation } from "typeorm";
 import { UserEntity } from "./UserEntity.js";
 
 @Entity("tokens")
@@ -22,5 +22,5 @@ export class TokenEntity {
 	@ManyToOne((type) => UserEntity, (user) => user.tokens, {
 		onDelete: "CASCADE",
 	})
-	owningUser!: UserEntity;
+	owningUser!: Relation<UserEntity>;
 }

@@ -4,6 +4,7 @@ import {
 	ManyToOne,
 	Column,
 	Unique,
+	Relation,
 } from "typeorm";
 import { TranslatableFormatEntity } from "./TranslatableFormatEntity.js";
 import { VersionLanguageEntity } from "./VersionLanguageEntity.js";
@@ -20,7 +21,7 @@ export class TranslatedFormatEntity {
 		(entity) => entity.translatedFormats,
 		{ onDelete: "CASCADE" },
 	)
-	owningLanguage!: VersionLanguageEntity;
+	owningLanguage!: Relation<VersionLanguageEntity>;
 
 	@Column()
 	owningLanguageId!: number;

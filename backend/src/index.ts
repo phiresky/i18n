@@ -1,9 +1,9 @@
+import "reflect-metadata";
 import { join } from "path";
 import { DbConnector } from "./db/DbConnector.js";
 import { Facades } from "./db/facade/index.js";
 import { HttpServer } from "./HttpServer.js";
 import { WebsocketHandler } from "./websocketHandler.js";
-
 /*
 class Mail {
     private transporter = createTransport({
@@ -39,7 +39,7 @@ class Main {
         await m.send();*/
 
 		const dbConnector = new DbConnector(
-			join(__dirname, "../data/i18n-database.sqlite3"),
+			join(import.meta.dirname, "../data/i18n-database.sqlite3"),
 		);
 		const dbConnection = await dbConnector.getConnection();
 		console.log("started");

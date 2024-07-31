@@ -4,6 +4,7 @@ import {
 	ManyToOne,
 	Column,
 	Unique,
+	Relation,
 } from "typeorm";
 import { UserEntity } from "./UserEntity.js";
 import { OrganizationEntity } from "./OrganizationEntity.js";
@@ -37,5 +38,5 @@ export class OrganizationMembershipEntity {
 	@ManyToOne((type) => OrganizationEntity, (entity) => entity.memberships, {
 		onDelete: "CASCADE",
 	})
-	org!: OrganizationEntity;
+	org!: Relation<OrganizationEntity>;
 }

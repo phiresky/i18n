@@ -9,6 +9,7 @@ import {
 	OneToOne,
 	JoinColumn,
 	JoinTable,
+	Relation,
 } from "typeorm";
 import { ProjectEntity } from "./ProjectEntity.js";
 import { VersionLanguageEntity } from "./VersionLanguageEntity.js";
@@ -64,7 +65,7 @@ export class VersionEntity {
 	@ManyToOne((type) => ProjectEntity, (entity) => entity.versions, {
 		onDelete: "CASCADE",
 	})
-	owningProject!: ProjectEntity;
+	owningProject!: Relation<ProjectEntity>;
 
 	@ManyToMany((type) => VersionEntity, (entity) => entity.childVersions)
 	@JoinTable()

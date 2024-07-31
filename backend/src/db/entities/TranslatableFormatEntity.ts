@@ -5,6 +5,7 @@ import {
 	Column,
 	OneToMany,
 	Unique,
+	Relation,
 } from "typeorm";
 import { VersionEntity } from "./VersionEntity.js";
 import { TranslatedFormatEntity } from "./TranslatedFormatEntity.js";
@@ -35,7 +36,7 @@ export class TranslatableFormatEntity {
 		(entity) => entity.translatableFormats,
 		{ onDelete: "CASCADE" },
 	)
-	owningVersion!: VersionEntity;
+	owningVersion!: Relation<VersionEntity>;
 
 	@OneToMany(
 		(type) => TranslatedFormatEntity,
