@@ -4,10 +4,10 @@
 	"main": "./index",
 	"types": "./index.d.ts",
 	"scripts": {
-		"dev": "webpack-dev-server --mode development",
+		"dev": "cross-env TS_NODE_PROJECT=tsconfig.node.json webpack-dev-server --mode development",
 		"build": "yarn build-frontend && yarn build-embedded-editor",
-		"build-frontend": "webpack --mode production",
-		"build-embedded-editor": "webpack --mode production --config webpack.config.embedded-editor.ts"
+		"build-frontend": "cross-env TS_NODE_PROJECT=tsconfig.node.json webpack --mode production",
+		"build-embedded-editor": "cross-env TS_NODE_PROJECT=tsconfig.node.json webpack --mode production --config webpack.config.embedded-editor.ts"
 	},
 	"license": "LGPL-3.0-only",
 	"devDependencies": {
@@ -29,6 +29,7 @@
 		"@yarnpkg/pnpify": "^4.0.0-rc.14",
 		"classnames": "^2.3.1",
 		"clean-webpack-plugin": "^4.0.0",
+		"cross-env": "^7.0.3",
 		"css-loader": "^6.7.1",
 		"file-loader": "^6.2.0",
 		"fork-ts-checker-webpack-plugin": "^7.2.13",

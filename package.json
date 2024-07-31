@@ -20,7 +20,7 @@
 		"build": "yarn tsc --build --verbose",
 		"build-api": "yarn workspace @hediet/i18n-api build",
 		"build-backend": "yarn workspace @hediet/i18n-backend build",
-		"build-frontend": "yarn workspace @hediet/i18n-frontend build",
+		"build-frontend": "yarn workspace @hediet/i18n-frontend build-frontend",
 		"build-static-analysis": "yarn workspace @hediet/i18n-static-analysis build",
 		"build-cli": "yarn workspace @hediet/i18n-cli build",
 		"build-eslint-plugin": "yarn workspace @hediet/eslint-plugin-i18n build",

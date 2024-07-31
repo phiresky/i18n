@@ -2,6 +2,7 @@
 	"extends": "../tsconfig.json",
 	"include": ["webpack.config.ts"],
 	"compilerOptions": {
-		"noEmit": true
+		"noEmit": true,
+		"esModuleInterop": true
 	}
 }

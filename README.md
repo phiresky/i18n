@@ -17,9 +17,42 @@ To improve the i18n situation of our project, we implement the following system.
 
 ## Setup
 
-Run `yarn install && yarn build` to build everything.
+Run `yarn install && yarn build` to build all server code. Then run `yarn build-frontend` to build the admin frontend.
 
-To start the backend, use `yarn start-backend`. On initial DB creation, a user will be created with username `admin` and password `changeme`.
+To start the backend, use `yarn start-backend`. You can now visit <http://localhost:5000>. On initial DB creation, a user will be created with username `admin` and password `changeme`.
+
+### Production
+
+If you make the backend accessible publicly (not using the file-based backend), you probably want to have a caching server in front. Here is an example nginx configuration:
+
+```nginx
+proxy_cache_path /var/cache/nginx/i18n-cache keys_zone=i18n_cache:100m levels=2 inactive=7d use_temp_path=off max_size=1g;
+server {
+	listen 443 ssl;
+	server_name example.com;
+	ssl_certificate /etc/letsencrypt/live/example.com/fullchain.pem; # managed by Certbot
+	ssl_certificate_key /etc/letsencrypt/live/example.com/privkey.pem; # managed by Certbot
+	location / {
+		gzip on;
+		gzip_proxied any;
+		gzip_types *;
+		proxy_pass http://localhost:5000;
+		proxy_pass_request_headers on;
+		proxy_http_version 1.1;
+		proxy_set_header Host $host;
+		proxy_set_header Upgrade $http_upgrade;
+		proxy_set_header Connection "upgrade";
+		#proxy_cache i18n_cache;
+		proxy_connect_timeout 10s; # rather use stale response than keep waiting
+		proxy_read_timeout 60s;
+		add_header X-Upstream-Cache-Status $upstream_cache_status;
+		add_header X-Upstream-Response-Time $upstream_response_time;
+		proxy_cache_background_update on;
+		# proxy_cache_key "$scheme$proxy_host$host$request_uri";
+		# proxy_cache_lock on;
+	}
+}
+```
 
 # Examples
 
