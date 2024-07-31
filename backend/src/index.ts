@@ -53,8 +53,7 @@ class Main {
 				email: "admin",
 			});
 		} catch (e) {
-			/*
-			 */
+			console.log("admin user already exists, not changing it");
 		}
 
 		const websocketHandler = new WebsocketHandler(facades);

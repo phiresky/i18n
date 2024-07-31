@@ -19,12 +19,12 @@
 		"clean": "yarn tsc --build --clean",
 		"build": "yarn tsc --build --verbose",
 		"build-api": "yarn workspace @hediet/i18n-api build",
-		"build-backend": "yarn workspace backend build",
+		"build-backend": "yarn workspace @hediet/i18n-backend build",
 		"build-frontend": "yarn workspace @hediet/i18n-frontend build",
 		"build-static-analysis": "yarn workspace @hediet/i18n-static-analysis build",
 		"build-cli": "yarn workspace @hediet/i18n-cli build",
 		"build-eslint-plugin": "yarn workspace @hediet/eslint-plugin-i18n build",
-		"start-backend": "yarn workspace backend start",
+		"start-backend": "yarn workspace @hediet/i18n-backend start",
 		"lint": "yarn ts-node lint-all.ts"
 	},
 	"devDependencies": {

@@ -114,7 +114,9 @@ export class HttpServer {
 		);
 		app.use(koaStatic(distPath, {}));
 
-		const server = app.listen(5000);
+		const port = +(process.env.LISTEN_PORT || 5000);
+		const server = app.listen(port);
+		console.log("listening on port", port);
 
 		const wss = new WebSocket.Server({ noServer: true });
 		wss.on("connection", (ws) => {

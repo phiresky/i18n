@@ -15,6 +15,12 @@ Problem 3 can be fixed by using explicit keys, preferrable random keys to avoid 
 
 To improve the i18n situation of our project, we implement the following system.
 
+## Setup
+
+Run `yarn install && yarn build` to build everything.
+
+To start the backend, use `yarn start-backend`. On initial DB creation, a user will be created with username `admin` and password `changeme`.
+
 # Examples
 
 ## T
