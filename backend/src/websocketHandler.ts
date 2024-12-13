@@ -100,13 +100,16 @@ export class WebsocketHandler {
 					sessionId,
 				);
 			},
-			/* def */ destroySession: async ({}, { context }) => {
+			/* def */ destroySession: async (_params, { context }) => {
 				await this.facades.userManagement.deleteSession(
 					context.requireSession().sessionId,
 				);
 				context.session = undefined;
 			},
-			/* def */ getCurrentUserInformation: async ({}, { context }) => {
+			/* def */ getCurrentUserInformation: async (
+				_params,
+				{ context },
+			) => {
 				const userInfo = await this.facades.userManagement.getUserInfo(
 					context.requireSession().userId,
 				);
@@ -142,7 +145,7 @@ export class WebsocketHandler {
 		siteAdminContract
 			.withContext<Session>()
 			.registerServer(adminSecuredChannel, {
-				/* def */ listUsers: async ({}, { context }) => {
+				/* def */ listUsers: async (_params, { context }) => {
 					return await this.facades.userManagement.listAllUsers();
 				},
 				/* def */ createUser: async (
@@ -171,8 +174,8 @@ export class WebsocketHandler {
 			});
 
 		mainContract.withContext<ConnectionContext>().registerServer(channel, {
-			/* def */ ping: async ({}) => {},
-			/* def */ getOrganizations: async ({}, { context }) => {
+			/* def */ ping: async (_params) => {},
+			/* def */ getOrganizations: async (_params, { context }) => {
 				const orgs = await this.facades.main.getOrganizations(
 					context.requireSession(),
 				);
@@ -326,6 +329,16 @@ export class WebsocketHandler {
 						translatableId,
 						languageCode,
 						translatedFormat,
+					);
+				},
+				/* def */ suggestTranslation: async (
+					{ version, translatableId, targetLanguageCode },
+					{ context },
+				) => {
+					await this.facades.versionTranslations.suggestTranslation(
+						version,
+						translatableId,
+						targetLanguageCode,
 					);
 				},
 				/* def */ getTranslationsForLanguageCode: async (

@@ -1,5 +1,6 @@
 import {
 	AnchorButton,
+	Button,
 	Callout,
 	FormGroup,
 	HTMLSelect,
@@ -25,17 +26,19 @@ import { PackageHeaderItem } from "./PackageHeaderItem";
 import { TranslatableItem } from "./TranslatableItem";
 import { StateFilter, VersionPageModel } from "./VersionPageModel";
 
+type VersionPageProps = {
+	model: Model;
+	version: (typeof sVersionRef)["T"];
+};
+
 @observer
-export class VersionPage extends React.Component<
-	{ model: Model; version: (typeof sVersionRef)["T"] },
-	{}
-> {
+export class VersionPage extends React.Component<VersionPageProps> {
 	private readonly model = new VersionPageModel(
 		this.props.model,
 		this.props.version,
 	);
 
-	constructor(p: VersionPage["props"]) {
+	constructor(p: VersionPageProps) {
 		super(p);
 
 		makeObservable(this);
@@ -216,8 +219,8 @@ export class VersionPage extends React.Component<
 										items={this.model.data
 											.case({
 												fulfilled: (v) => v.packages,
-												pending: (v) => [],
-												rejected: (v) => [],
+												pending: () => [],
+												rejected: () => [],
 											})
 											.map((p) => p.packageId)}
 										selectedItems={
@@ -267,6 +270,21 @@ export class VersionPage extends React.Component<
 											},
 										]}
 									/>
+								</FormGroup>
+								<div style={{ width: 10 }} />
+								<FormGroup label=" ">
+									<Button
+										icon="translate"
+										onClick={() =>
+											this.model.suggestTranslations()
+										}
+										disabled={
+											this.model.data.state !==
+											"fulfilled"
+										}
+									>
+										Suggest Translations
+									</Button>
 								</FormGroup>
 								<div style={{ marginLeft: "auto" }} />
 								<FormGroup label="Items">

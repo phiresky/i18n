@@ -5,8 +5,93 @@ import {
 } from "@hediet/i18n-api";
 import { groupBy } from "../../utils/other.js";
 import { BaseVersionFacade, VersionRef } from "./BaseVersionFacade.js";
+import { DeepLTranslationService } from "../../services/DeepLTranslationService.js";
+import type { TargetLanguageCode } from "deepl-node";
 
 export class VersionTranslationsFacade extends BaseVersionFacade {
+	private translationService: DeepLTranslationService;
+
+	constructor(...args: ConstructorParameters<typeof BaseVersionFacade>) {
+		super(...args);
+		this.translationService = new DeepLTranslationService();
+	}
+
+	public async suggestTranslation(
+		versionRef: VersionRef,
+		translatableId: number,
+		targetLanguageCode: string,
+	): Promise<void> {
+		const version = await this.getVersion(versionRef);
+		if ("error" in version) {
+			throw new Error();
+		}
+
+		const repo = this.connection.translatedFormats;
+		const result = await repo
+			.createQueryBuilder("translatedFormatEntity")
+			.innerJoinAndSelect(
+				"translatedFormatEntity.owningFormat",
+				"owningFormat",
+				"owningFormat.id = :translatableId",
+				{ translatableId },
+			)
+			.innerJoinAndSelect(
+				"translatedFormatEntity.owningLanguage",
+				"owningLanguage",
+				"owningLanguage.languageCode = :languageCode",
+				{ languageCode: targetLanguageCode },
+			)
+			.andWhere("owningLanguage.owningVersionId = :versionId", {
+				versionId: version.id,
+			})
+			.getOne();
+
+		if (!result) {
+			throw new Error("Translated entity does not exist");
+		}
+
+		// Get the source text from the default language (English)
+		const sourceText = await repo
+			.createQueryBuilder("translatedFormatEntity")
+			.innerJoinAndSelect(
+				"translatedFormatEntity.owningFormat",
+				"owningFormat",
+				"owningFormat.id = :translatableId",
+				{ translatableId },
+			)
+			.innerJoinAndSelect(
+				"translatedFormatEntity.owningLanguage",
+				"owningLanguage",
+				"owningLanguage.languageCode = :languageCode",
+				{ languageCode: "en" },
+			)
+			.andWhere("owningLanguage.owningVersionId = :versionId", {
+				versionId: version.id,
+			})
+			.getOne();
+
+		if (!sourceText?.acceptedTranslation) {
+			throw new Error("Source text not found or empty");
+		}
+
+		try {
+			// Convert language code to DeepL format (e.g., "en-US" -> "EN-US")
+			const deeplTargetLang =
+				targetLanguageCode.toUpperCase() as TargetLanguageCode;
+
+			const translatedText = await this.translationService.translateText(
+				sourceText.acceptedTranslation,
+				deeplTargetLang,
+			);
+
+			result.suggestedTranslation = translatedText;
+			await repo.save(result);
+		} catch (error) {
+			console.error("Translation failed:", error);
+			throw new Error("Failed to generate translation suggestion");
+		}
+	}
+
 	public async postTranslation(
 		isAdmin: boolean,
 		versionRef: VersionRef,

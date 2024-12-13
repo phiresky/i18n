@@ -51,6 +51,13 @@ export const versionContract = contract({
 				translatedFormat: s.sUnion([s.sString(), s.sNull()]),
 			}),
 		}),
+		/* def */ suggestTranslation: requestType({
+			params: s.sObject({
+				version: sVersionRef,
+				translatableId: s.sNumber(),
+				targetLanguageCode: s.sString(),
+			}),
+		}),
 		/* def */ syncTranslatables: requestType({
 			params: s.sObject({
 				version: sVersionRef,
