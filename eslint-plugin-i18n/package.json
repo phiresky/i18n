@@ -1,18 +1,19 @@
 {
 	"name": "@hediet/eslint-plugin-i18n",
-	"version": "0.5.0",
+	"version": "0.6.0",
 	"main": "dist/index.js",
 	"types": "dist/index.d.ts",
 	"license": "GPL-3.0",
-	"type": "commonjs",
+	"type": "module",
 	"scripts": {
 		"dev": "tsc --watch",
 		"build": "tsc"
 	},
 	"dependencies": {
 		"@hediet/i18n-static-analysis": "workspace:^",
-		"@typescript-eslint/utils": "^6.21.0",
-		"import-sync": "^2.2.0"
+		"@typescript-eslint/utils": "^8.26.0",
+		"import-sync": "^2.2.0",
+		"nanoid": "^4.0.0"
 	},
 	"peerDependencies": {
 		"eslint": "^8",
