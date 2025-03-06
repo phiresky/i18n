@@ -1,6 +1,6 @@
 {
-	"name": "@hediet/eslint-plugin-i18n",
-	"version": "0.6.0",
+	"name": "@phiresky/eslint-plugin-i18n",
+	"version": "0.6.1",
 	"main": "dist/index.js",
 	"types": "dist/index.d.ts",
 	"license": "GPL-3.0",
@@ -16,7 +16,7 @@
 		"nanoid": "^4.0.0"
 	},
 	"peerDependencies": {
-		"eslint": "^8",
+		"eslint": "^9",
 		"typescript": "*"
 	},
 	"publishConfig": {

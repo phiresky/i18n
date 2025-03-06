@@ -365,21 +365,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@hediet/eslint-plugin-i18n@workspace:eslint-plugin-i18n":
-  version: 0.0.0-use.local
-  resolution: "@hediet/eslint-plugin-i18n@workspace:eslint-plugin-i18n"
-  dependencies:
-    "@hediet/i18n-static-analysis": "workspace:^"
-    "@typescript-eslint/utils": "npm:^8.26.0"
-    import-sync: "npm:^2.2.0"
-    nanoid: "npm:^4.0.0"
-    typescript: "npm:^5"
-  peerDependencies:
-    eslint: ^8
-    typescript: "*"
-  languageName: unknown
-  linkType: soft
-
 "@hediet/geml@npm:^0.1.0-alpha.4":
   version: 0.1.0-alpha.4
   resolution: "@hediet/geml@npm:0.1.0-alpha.4"
@@ -1174,6 +1159,21 @@ __metadata:
   checksum: 10/905c8553e46e1a32b27f3f8c665c6a390648204f0b05c23693cd22a874e0bf654534ae2e51de3e09a794c07cc67cfd7f067b57f93cea0f658a369767537a72f0
   languageName: node
   linkType: hard
+
+"@phiresky/eslint-plugin-i18n@workspace:eslint-plugin-i18n":
+  version: 0.0.0-use.local
+  resolution: "@phiresky/eslint-plugin-i18n@workspace:eslint-plugin-i18n"
+  dependencies:
+    "@hediet/i18n-static-analysis": "workspace:^"
+    "@typescript-eslint/utils": "npm:^8.26.0"
+    import-sync: "npm:^2.2.0"
+    nanoid: "npm:^4.0.0"
+    typescript: "npm:^5"
+  peerDependencies:
+    eslint: ^9
+    typescript: "*"
+  languageName: unknown
+  linkType: soft
 
 "@pkgjs/parseargs@npm:^0.11.0":
   version: 0.11.0
